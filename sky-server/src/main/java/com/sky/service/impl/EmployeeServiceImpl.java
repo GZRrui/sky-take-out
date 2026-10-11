@@ -1,5 +1,6 @@
 package com.sky.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.sky.constant.MessageConstant;
 import com.sky.constant.StatusConstant;
 import com.sky.dto.EmployeeLoginDTO;
@@ -22,8 +23,12 @@ import com.sky.dto.EmployeeDTO;
 import org.springframework.beans.BeanUtils;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import com.github.pagehelper.Page;
 import com.sky.context.BaseContext;
+import com.sky.dto.EmployeePageQueryDTO;
+import com.sky.result.PageResult;
 
 
 @Service
@@ -99,6 +104,27 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeMapper.insert(employee);
 
     }   
+
+    /**
+     * 分页查询员工信息
+     * @param employeePageQueryDTO
+     * @return
+     */
+    @Override
+    public PageResult pageQuery(EmployeePageQueryDTO employeePageQueryDTO) {
+        // select *from employee limit(0,10)
+        //开始分页查询
+        PageHelper.startPage((employeePageQueryDTO).getPage(),employeePageQueryDTO.getPageSize());
+
+        Page<Employee> page = employeeMapper.pageQuery(employeePageQueryDTO);
+
+        long total = page.getTotal();
+
+        List<Employee> records = page.getResult();
+        
+        return new PageResult(total,records);
+        //return new PageResult(page.getTotal(),page.getResult());
+    }
 
 
 }

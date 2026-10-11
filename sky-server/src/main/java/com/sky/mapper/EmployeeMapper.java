@@ -6,6 +6,9 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import com.github.pagehelper.Page;
+import com.sky.dto.EmployeePageQueryDTO;
+
 @Mapper
 public interface EmployeeMapper {
 
@@ -24,5 +27,12 @@ public interface EmployeeMapper {
     @Insert ("insert into employee (name, username, password, phone, sex, id_number, status, create_time, update_time) " +
             "values (#{name}, #{username}, #{password}, #{phone}, #{sex}, #{idNumber}, #{status}, #{createTime}, #{updateTime})")   
     public void insert(Employee employee);
+
+    /**
+     * 分页查询
+     * @param employeePageQueryDTO
+     * @return
+     */
+    Page<Employee> pageQuery(EmployeePageQueryDTO employeePageQueryDTO);
 
 }
