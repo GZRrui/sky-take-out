@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -97,6 +98,11 @@ public class EmployeeController {
         return Result.success();
     }
 
+    /**
+     * 分页查询员工
+     * @param employeePageQueryDTO
+     * @return
+     */
     @GetMapping("/page")
     @ApiOperation ("分页查询员工")
     public Result<PageResult> page(EmployeePageQueryDTO employeePageQueryDTO) {
@@ -105,4 +111,17 @@ public class EmployeeController {
         return Result.success(pageReslut);
     }
 
+    /**
+     * 启用或禁用员工
+     * @param status
+     * @param id
+     * @return
+     */
+    @PostMapping("/status/{status}")
+    @ApiOperation("启用或禁用员工")
+    public Result startOrStop(@PathVariable Integer status, Long id) {
+        log.info("启用或禁用员工：status={},id={}", status, id);
+        employeeService.startOrStop(status, id);
+        return Result.success();
+    }
 }
