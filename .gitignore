@@ -7,3 +7,6 @@
 
 # WorkBuddy 项目数据目录(不纳入版本控制)
 .workbuddy-ai/
+
+# 本地环境配置(含数据库密码 / 阿里云 OSS 密钥,不纳入版本控制)
+application-dev.yml

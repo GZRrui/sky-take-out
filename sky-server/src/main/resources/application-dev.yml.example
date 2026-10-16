@@ -1,0 +1,22 @@
+# ============================================================
+# 开发环境配置模板
+# 使用方法：复制本文件为同目录下的 application-dev.yml，并填入真实值。
+#   Windows:  copy application-dev.yml.example application-dev.yml
+#   macOS/Linux: cp application-dev.yml.example application-dev.yml
+# 注意：application-dev.yml 已被 .gitignore 忽略，不会提交到仓库，
+#       请勿把真实密钥写进本模板文件。
+# ============================================================
+
+sky:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: localhost
+    port: 3306
+    database: sky_take_out
+    username: <你的数据库用户名>
+    password: <你的数据库密码>
+  alioss:
+    endpoint: <你的OSS Endpoint，例如 oss-cn-beijing.aliyuncs.com>
+    access-key-id: <你的阿里云 AccessKeyId>
+    access-key-secret: <你的阿里云 AccessKeySecret>
+    bucket-name: <你的OSS Bucket名称>
